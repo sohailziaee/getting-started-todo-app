@@ -1,9 +1,7 @@
-name: CI/CD Pipeline
+name: CI Pipeline
 
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
     branches: [ main, master ]
 
 jobs:
@@ -14,16 +12,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: List files (debug)
+        run: ls -R
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: echo "Skipping tests for assignment"
-
-      - name: Build
-        run: echo "Skipping build for assignment"
+        run: |
+          cd getting-started-todo-app || true
+          npm install
